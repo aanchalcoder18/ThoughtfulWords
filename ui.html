@@ -1,0 +1,69 @@
+<style>
+  h2 {
+      text-align: center;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  button {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      border-radius: 5px;
+      background: #8AA2D4;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin: 0 5px;
+      box-shadow: inset 0 0 0 1px white;
+      outline: none;
+  }
+
+  p {
+      font-size: 14px;
+      text-align: center;
+  }
+  #demo{
+      text-align:center;
+  }
+  #blank{
+      text-align:center;
+  }
+  #title{
+      text-align:center;
+  }
+  div{
+    text-align:center;
+  }
+  
+</style>
+<script type = "text/javascript" src = "code.js"> </script> 
+<h2 id = title >Thoughtful Words</h2>
+<script>
+  onmessage = (event) => {
+    var arr = event.data.pluginMessage.split(",");
+    document.getElementById("title").innerHTML =  arr[0];
+    document.getElementById("reason").innerHTML =  "This word was flagged for it's "+arr[1]+" connotation or roots.";
+    document.getElementById("blank").innerHTML =  "Do some research to determine if this is the word or phrase you want to use";
+    document.getElementById("nums").innerHTML = " "+arr[2]+ " out of "+arr[3]+" ";
+  }
+</script>
+<p><div id="demo"> Some words</div><div>might be <b> harmful</b> to others</div> <p id = "reason"></p></p> <p id="blank"></p>
+
+<div style="text-align:center;">
+  <button id = "Refresh">Refresh</button>
+  <button id="FindNext">Find Next</button>
+</div>
+<div style="text-align:center;">
+  <p id ="nums"></p> 
+</div>
+
+<script type = "text/javascript">
+  function getBW(){
+    console.log(getBadWord( ));//document.getElementById("demo").innerHTML = getBadWord();
+  }
+  document.getElementById('Refresh').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'refresh'} }, '*')
+  }
+  document.getElementById('FindNext').onclick = () => {
+      parent.postMessage({ pluginMessage: { type: 'find-next' } }, '*')
+  }
+
+</script>
